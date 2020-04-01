@@ -1,6 +1,7 @@
 package com.ikaru.cararena.activities
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,9 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.custom.sliderimage.logic.SliderImage
 import com.ikaru.cararena.R
 import com.ikaru.cararena.adapters.CarAdapter
+import com.ikaru.cararena.models.BackgroundModels
+import com.ikaru.cararena.models.BrandModel
 import com.ikaru.cararena.models.CarModel
 import com.ikaru.cararena.repository.CarRepository
+import com.ikaru.cararena.services.ApiService
+import com.ikaru.cararena.utils.DataRepository
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     val carAdapter =  CarAdapter(R.layout.item_car,cars)
     lateinit var carRepository : CarRepository
+    val postServices = DataRepository.create()
+    val backgroundsString: MutableList<String> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +49,16 @@ class MainActivity : AppCompatActivity() {
 
         carRepository = CarRepository(this)
         // Create slider image component
-        val sliderImage = SliderImage(this)
+
 
         // add images URLs
-        val images = listOf(
-            "https://i.ytimg.com/vi/zGs93H8sVUQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/v3TMucxq56E/maxresdefault.jpg",
-            "https://s2.bukalapak.com/uploads/promo_partnerinfo_bloggy/2842/Bloggy_1_puncak.jpg")
-
+//        val images = listOf(
+//            "https://i.ytimg.com/vi/zGs93H8sVUQ/maxresdefault.jpg",
+//            "https://i.ytimg.com/vi/v3TMucxq56E/maxresdefault.jpg",
+//            "https://s2.bukalapak.com/uploads/promo_partnerinfo_bloggy/2842/Bloggy_1_puncak.jpg")
+        getBackground()
         // Add image URLs to sliderImage
-        slider.setItems(images)
+        slider.setItems(backgroundsString)
         slider.addTimerToSlide(2000)
 
         getData()
@@ -58,7 +68,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun new_car(){
-        Toast.makeText(this, "New Car", Toast.LENGTH_LONG).show()
+        intent = Intent(applicationContext, BrandActivity::class.java)
+        startActivity(intent)
     }
 
     fun compare_car(){
@@ -66,23 +77,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getData(){
-//        val apiService = DataRepository.create()
-//        apiService.getCar().enqueue(object : Callback<List<CarModel>>{
-//            override fun onFailure(call: Call<List<CarModel>>, t: Throwable) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onResponse(
-//                call: Call<List<CarModel>>,
-//                response: retrofit2.Response<List<CarModel>>
-//            ) {
-//                Log.e("ASW",response.body().toString())
-//                cars = response.body() as ArrayList<CarModel>?
-//                carAdapter.refill(cars)
-//                Log.e("ASW", cars?.size.toString())
-//            }
-//
-//        })
         var car_repo = carRepository.GetDataFromDB().execute().get()
         carRepository.getPostFromInternet()
 
@@ -92,19 +86,38 @@ class MainActivity : AppCompatActivity() {
             carAdapter.refill(cars)
         } else {
             Log.e("ASW","ERROR")
-
-            restartApp()
+            var intent = Intent(this,EmptyDataActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
 
     }
 
-    private fun restartApp() {
-        val intent = Intent(this,MainActivity::class.java)
 
-        startActivity(intent)
+    private fun getBackground(){
+        postServices.getBackgrounds().enqueue(object  : Callback<List<BackgroundModels>> {
+            override fun onFailure(call: Call<List<BackgroundModels>>, t: Throwable) {
+                backgroundsString.add("https://ik.imagekit.io/hj8sm3kk7/marketing/daihatsu-terios-1539604946.jpg")
+                backgroundsString.add("https://ik.imagekit.io/hj8sm3kk7/marketing/mgzsdigitaladshomepage1400x509pxweb-1585033177.jpg")
+                slider.setItems(backgroundsString)
+            }
 
-        finish()
+            override fun onResponse(
+                call: Call<List<BackgroundModels>>,
+                response: Response<List<BackgroundModels>>
+            ) {
+                var backgroundModels : ArrayList<BackgroundModels> = ArrayList()
+                backgroundModels = response.body() as ArrayList<BackgroundModels>
+                var isi = backgroundModels.last()
+                backgroundsString.add(isi.url_img1)
+                backgroundsString.add(isi.url_img2)
+                backgroundsString.add(isi.url_img3)
+                Log.e("ASW",backgroundsString.get(0))
+                slider.setItems(backgroundsString)
+            }
+
+        })
     }
 
 

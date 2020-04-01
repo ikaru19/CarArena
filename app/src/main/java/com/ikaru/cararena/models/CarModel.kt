@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cars")
 data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
+                    @ColumnInfo(name = "id_brand")val id_brand:Int,
                     @ColumnInfo(name = "car_brand") val car_brand: String? = null,
                     @ColumnInfo(name = "logo_url")  val logo_url:String? = null,
                     @ColumnInfo(name = "createdAt")  val createdAt: String? = null,
@@ -20,8 +21,9 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
                     @ColumnInfo(name = "jenis_transmisi") val jenis_transmisi: String? = null,
                     @ColumnInfo(name = "img1") val img1: String? = null,
                     @ColumnInfo(name = "img2") val img2: String? = null,
-                    @ColumnInfo(name = "img3") val img3: String? ) : Parcelable {
+                    @ColumnInfo(name = "img3") val img3: String? = null) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
@@ -41,6 +43,7 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
+        parcel.writeInt(id_brand)
         parcel.writeString(car_brand)
         parcel.writeString(logo_url)
         parcel.writeString(createdAt)
