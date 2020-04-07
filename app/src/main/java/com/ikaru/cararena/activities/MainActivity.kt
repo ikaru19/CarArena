@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.custom.sliderimage.logic.SliderImage
 import com.ikaru.cararena.R
 import com.ikaru.cararena.adapters.CarAdapter
@@ -24,7 +25,7 @@ import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
-    var cars : ArrayList<CarModel>? = ArrayList()
+    var cars : ArrayList<CarModel> = ArrayList()
     val clickListener = View.OnClickListener { view ->
 
         when (view.getId()) {
@@ -61,6 +62,12 @@ class MainActivity : AppCompatActivity() {
         slider.setItems(backgroundsString)
         slider.addTimerToSlide(2000)
 
+        carAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            Toast.makeText(this , "onItemClick : " + cars.get(position).car_name , Toast.LENGTH_SHORT ).show()
+
+            true
+        }
+
         getData()
         rv_car_popular_main.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rv_car_popular_main.adapter =  carAdapter
@@ -82,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         if (car_repo!!.size > 0){
             Log.e("ASW","DAPAT DATA")
-            cars = car_repo as ArrayList<CarModel>?
+            cars = car_repo as ArrayList<CarModel>
             carAdapter.refill(cars)
         } else {
             Log.e("ASW","ERROR")

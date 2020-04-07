@@ -1,6 +1,7 @@
 package com.ikaru.cararena.repository
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
@@ -10,6 +11,8 @@ import com.ikaru.cararena.utils.DataRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CarRepository(context: Context) {
     var context : Context = context
@@ -17,8 +20,8 @@ class CarRepository(context: Context) {
     var cars : List<CarModel>? = null
     val postServices = DataRepository.create()
     private var PRIVATE_MODE = 0
-    private val PREF_NAME = "firsttimer"
-//    val sharedPreferences : SharedPreferences = context.getSharedPreferences(PREF_NAME,PRIVATE_MODE)
+    private val PREF_NAME = "tanggal"
+    val sharedPreferences : SharedPreferences = context.getSharedPreferences(PREF_NAME,PRIVATE_MODE)
 
     init {
         carDatabase = CarRoomDatabase.getDatabase(context)!!
@@ -41,7 +44,15 @@ class CarRepository(context: Context) {
 
                 if(cars!!.isNotEmpty()){
                     Log.e("ASW","DATA ALREADY HERE")
+                    var tgl = sharedPreferences.getString(PREF_NAME,"null")
+                    Log.e("ASW", "Data Created On : $tgl")
+
                 }else{
+                    val sdf = SimpleDateFormat("yyyy-MM-dd")
+                    val currentDate = sdf.format(Date())
+                    val editor = sharedPreferences.edit()
+                    editor.putString(PREF_NAME, currentDate)
+                    editor.apply()
                     val data = response.body()
                     data?.map {
                         InsertTask(it).execute()

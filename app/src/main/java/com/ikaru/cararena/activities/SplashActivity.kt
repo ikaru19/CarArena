@@ -11,7 +11,7 @@ import com.ikaru.cararena.repository.CarRepository
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT:Long=3000 // 3 sec
+    private val SPLASH_TIME_OUT:Long=1000 // 3 sec
     lateinit var carRepository : CarRepository
     lateinit var brandRepository : BrandRepository
 
