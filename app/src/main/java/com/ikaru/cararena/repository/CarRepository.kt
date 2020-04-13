@@ -112,6 +112,20 @@ class CarRepository(context: Context) {
 
     }
 
+    inner class  GetCarByName(var name:String , var id:Int) : AsyncTask<Void , Void , List<CarModel>>(){
+
+
+        override fun doInBackground(vararg params: Void?): List<CarModel> {
+            if (name.isEmpty()){
+                return carDatabase!!.carDao().getNewCarByID(id)
+            }else{
+                return carDatabase!!.carDao().getCarByName(name,id)
+            }
+
+        }
+
+    }
+
 
 
 }

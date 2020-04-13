@@ -64,7 +64,9 @@ class MainActivity : AppCompatActivity() {
 
         carAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             Toast.makeText(this , "onItemClick : " + cars.get(position).car_name , Toast.LENGTH_SHORT ).show()
-
+            intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("Car",cars.get(position))
+            startActivity(intent)
             true
         }
 
@@ -76,11 +78,13 @@ class MainActivity : AppCompatActivity() {
 
     fun new_car(){
         intent = Intent(applicationContext, BrandActivity::class.java)
+        intent.putExtra("from","main")
         startActivity(intent)
     }
 
     fun compare_car(){
-        Toast.makeText(this, "Compare", Toast.LENGTH_LONG).show()
+        intent = Intent(applicationContext, CompareActivity::class.java)
+        startActivity(intent)
     }
 
     fun getData(){

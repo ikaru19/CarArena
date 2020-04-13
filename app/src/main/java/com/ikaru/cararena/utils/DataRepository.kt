@@ -1,15 +1,41 @@
 package com.ikaru.cararena.utils
 
+import android.text.TextUtils
 import com.ikaru.cararena.services.ApiService
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 object DataRepository {
+
+    private const val BASE_URL = "http://139.162.28.184:4000/api/"
+
+    private val builder: Retrofit.Builder = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+
+
+
+    private val logging = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    private val httpClient = OkHttpClient.Builder()
+
+
     public fun create(): ApiService {
-        val retrofit = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("http://139.162.28.184:4000/api/")
+        val retrofit = builder
             .build()
+        return retrofit.create(ApiService::class.java)
+    }
+
+    public fun  createService(authToken: String): ApiService{
+        if (!TextUtils.isEmpty(authToken)) {
+            httpClient.addInterceptor(AuthenticationInterceptor(authToken))
+        }
+        builder.client(httpClient.build())
+        val retrofit = builder.build()
         return retrofit.create(ApiService::class.java)
     }
 }

@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.EmptyDataActivity"></activity>
+        <activity android:name=".activities.CompareActivity"></activity>
+        <activity android:name=".activities.DetailActivity" />
+        <activity android:name=".activities.EmptyDataActivity" />
         <activity android:name=".activities.ListActivity" />
         <activity android:name=".activities.BrandActivity" />
         <activity android:name=".activities.SplashActivity">

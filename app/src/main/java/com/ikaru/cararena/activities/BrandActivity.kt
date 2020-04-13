@@ -24,17 +24,31 @@ class BrandActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_brand)
+        var from = intent.getStringExtra("from")
+
+
+        Log.e("ASW",from)
         brandRepository = BrandRepository(this)
         getData()
         brandAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             Toast.makeText(this , "onItemClick : " + brands.get(position).car_brand , Toast.LENGTH_SHORT ).show()
+            var change = 404
+            if (from =="compare"){
+                change = intent.getIntExtra("change",404)
+                Log.e("ASW",change.toString())
+            }
             intent = Intent(this@BrandActivity, ListActivity::class.java)
             intent.putExtra("Brand",brands.get(position))
+            intent.putExtra("from",from)
+            intent.putExtra("change",change)
+
             startActivity(intent)
             true
         }
         rv_brand_activity_brand.layoutManager = GridLayoutManager(this,2)
         rv_brand_activity_brand.adapter = brandAdapter
+
+
 
     }
 

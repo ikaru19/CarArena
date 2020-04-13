@@ -15,7 +15,7 @@
         android:layout_marginBottom="8dp">
 
         <ImageView
-            android:id="@+id/iv_item_car"
+            android:id="@+id/iv_compare_car_1"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
             app:srcCompat="@drawable/car_logo2" />
 
         <TextView
-            android:id="@+id/tv_title_item_car"
+            android:id="@+id/tv_title_car_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
             android:text="TextView"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_item_car" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_compare_car_1" />
 
         <TextView
             android:id="@+id/tv_price_item_car"
@@ -47,7 +47,7 @@
             android:text="TextView"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_item_car" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_car_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
