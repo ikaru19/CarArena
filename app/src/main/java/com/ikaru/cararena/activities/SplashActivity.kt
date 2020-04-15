@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.ikaru.cararena.R
 import com.ikaru.cararena.repository.BrandRepository
 import com.ikaru.cararena.repository.CarRepository
@@ -26,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
             // Start your app main activity
 
             startActivity(Intent(this, MainActivity::class.java))
+            Animatoo.animateZoom(this);
 
             // close this activity
             finish()

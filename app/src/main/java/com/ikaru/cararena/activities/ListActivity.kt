@@ -1,13 +1,15 @@
 package com.ikaru.cararena.activities
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ikaru.cararena.R
 import com.ikaru.cararena.adapters.CarAdapter
@@ -17,6 +19,7 @@ import com.ikaru.cararena.repository.CarRepository
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_list.*
 
+
 class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     lateinit var carRepository : CarRepository
@@ -25,9 +28,11 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var carsCompare : ArrayList<CarModel> = ArrayList()
     val carAdapter =  CarAdapter(R.layout.item_car_full,cars)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
         var from = intent.getStringExtra("from")
 
         carRepository = CarRepository(this)
@@ -46,11 +51,14 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 }else{
                     carsCompare.add(cars.get(position))
                 }
-
                 save()
                 Log.e("ASW",from)
                 intent = Intent(this, CompareActivity::class.java)
+
+                finish()
                 startActivity(intent)
+                Animatoo.animateSlideLeft(this);
+
             }else{
                 intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("Car",cars.get(position))
@@ -109,5 +117,10 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     fun changeCars(param : Int,carModel: CarModel){
         carsCompare[param] = carModel
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this);
     }
 }

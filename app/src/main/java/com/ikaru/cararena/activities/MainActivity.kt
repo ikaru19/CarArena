@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.custom.sliderimage.logic.SliderImage
 import com.ikaru.cararena.R
@@ -80,11 +81,13 @@ class MainActivity : AppCompatActivity() {
         intent = Intent(applicationContext, BrandActivity::class.java)
         intent.putExtra("from","main")
         startActivity(intent)
+        Animatoo.animateSlideUp(this);
     }
 
     fun compare_car(){
         intent = Intent(applicationContext, CompareActivity::class.java)
         startActivity(intent)
+        Animatoo.animateSlideUp(this);
     }
 
     fun getData(){

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.ikaru.cararena.R
 import com.ikaru.cararena.models.CarModel
 import io.paperdb.Paper
@@ -125,6 +126,16 @@ class CompareActivity : AppCompatActivity() {
         startActivity(refresh)
         overridePendingTransition(0, 0)
 
+    }
+
+    override fun onBackPressed() {
+        intent = Intent(this, MainActivity::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        finish()
+        Log.e("ASW","Back From Compare")
+
+        startActivity(intent)
+        Animatoo.animateSlideRight(this);
     }
 
 

@@ -1,11 +1,13 @@
 package com.ikaru.cararena.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ikaru.cararena.R
 import com.ikaru.cararena.adapters.BrandAdapter
@@ -19,11 +21,14 @@ class BrandActivity : AppCompatActivity() {
     var brands : ArrayList<BrandModel> = ArrayList()
     val brandAdapter =  BrandAdapter(R.layout.item_brand,brands)
     lateinit var brandRepository : BrandRepository
-
+    public var selfintent: Activity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_brand)
+        selfintent=this
+
+
         var from = intent.getStringExtra("from")
 
 
@@ -43,6 +48,7 @@ class BrandActivity : AppCompatActivity() {
             intent.putExtra("change",change)
 
             startActivity(intent)
+            Animatoo.animateSlideLeft(this);
             true
         }
         rv_brand_activity_brand.layoutManager = GridLayoutManager(this,2)
@@ -69,4 +75,11 @@ class BrandActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this);
+    }
+
+
 }

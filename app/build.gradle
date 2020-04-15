@@ -65,5 +65,8 @@ dependencies {
     //paper
     implementation 'io.paperdb:paperdb:2.6'
 
+    //animatoo
+    implementation 'com.github.mohammadatif:Animatoo:master'
+
 
 }
