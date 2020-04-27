@@ -42,7 +42,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         getData()
 
         carAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            Toast.makeText(this , "onItemClick : " + cars.get(position).car_name , Toast.LENGTH_SHORT ).show()
+            Toast.makeText(this , "onItemClick : " + cars.get(position).type , Toast.LENGTH_SHORT ).show()
             if (from == "compare"){
                 var change = intent.getIntExtra("change",404)
                 Log.e("ASW", change.toString())
@@ -78,7 +78,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun getData(){
         var car_repo = carRepository.GetCarById().execute(brandModel.id).get()
         if (car_repo != null) {
-            Log.e("ASW",car_repo.get(1).car_name)
+            Log.e("ASW",car_repo.get(0).type)
             cars = car_repo as ArrayList<CarModel>
             carAdapter.refill(cars)
         }

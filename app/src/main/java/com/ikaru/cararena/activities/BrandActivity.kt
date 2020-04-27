@@ -36,7 +36,7 @@ class BrandActivity : AppCompatActivity() {
         brandRepository = BrandRepository(this)
         getData()
         brandAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            Toast.makeText(this , "onItemClick : " + brands.get(position).car_brand , Toast.LENGTH_SHORT ).show()
+            Toast.makeText(this , "onItemClick : " + brands.get(position).carBrand , Toast.LENGTH_SHORT ).show()
             var change = 404
             if (from =="compare"){
                 change = intent.getIntExtra("change",404)
@@ -67,7 +67,7 @@ class BrandActivity : AppCompatActivity() {
             Log.e("ASW","DAPAT DATA")
 
             brands = brand_repo as ArrayList<BrandModel>
-            Log.e("ASW",brand_repo.get(0).car_brand)
+            Log.e("ASW",brand_repo.get(0).carBrand)
 
             brandAdapter.refill(brand_repo)
         } else {

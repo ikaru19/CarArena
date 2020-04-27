@@ -7,10 +7,10 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("brand")
+    @GET("brand/cars")
     fun getCar(): Call<List<CarModel>>
 
-    @GET("brand/car")
+    @GET("brand")
     fun getBrands(): Call<List<BrandModel>>
 
     @GET("backgrounds")

@@ -12,19 +12,45 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
                     @ColumnInfo(name = "car_brand") val car_brand: String? = null,
                     @ColumnInfo(name = "logo_url")  val logo_url:String? = null,
                     @ColumnInfo(name = "createdAt")  val createdAt: String? = null,
-                    @ColumnInfo(name = "car_name") val car_name: String? = null,
+                    @ColumnInfo(name = "type") val type: String? = null,
                     @ColumnInfo(name = "harga_otr") val harga_otr: String? = null,
-                    @ColumnInfo(name = "angsuran") val angsuran: String?  = null,
-                    @ColumnInfo(name = "mesin") val mesin: String? = null,
-                    @ColumnInfo(name = "tenaga") val tenaga: String? = null,
-                    @ColumnInfo(name = "tempat_duduk") val tempat_duduk: String? = null,
-                    @ColumnInfo(name = "jenis_transmisi") val jenis_transmisi: String? = null,
+                    @ColumnInfo(name = "kapasitasMesin") val kapasitasMesin: String?  = null,
+                    @ColumnInfo(name = "jmlSilinder") val jmlSilinder: String? = null,
+                    @ColumnInfo(name = "jmlKatup") val jmlKatup: String? = null,
+                    @ColumnInfo(name = "maxTenaga") val maxTenaga: String? = null,
+                    @ColumnInfo(name = "jenisBahanBakar") val jenisBahanBakar : String? = null,
+                    @ColumnInfo(name = "kapasitasBahanBakar") val kapasitasBahanBakar : String? = null,
+                    @ColumnInfo(name = "suspensiDepan") val suspensiDepan : String? = null,
+                    @ColumnInfo(name = "banAspekRasio") val banAspekRasio : String? = null,
+                    @ColumnInfo(name = "suspensiBelakang") val suspensiBelakang : String? = null,
+                    @ColumnInfo(name = "tipeTransmisi") val tipeTransmisi : String? = null,
+                    @ColumnInfo(name = "tipeGearBox") val tipeGearBox : String? = null,
+                    @ColumnInfo(name = "dimensiPanjang") val dimensiPanjang : String? = null,
+                    @ColumnInfo(name = "dimensiSumbuRoda") val dimensiSumbuRoda : String? = null,
+                    @ColumnInfo(name = "dimensiGroundClearance") val dimensiGroundClearance : String? = null,
+                    @ColumnInfo(name = "dimensiBerat") val dimensiBerat : String? = null,
+                    @ColumnInfo(name = "dimensiKargo") val dimensiKargo: String? = null,
+                    @ColumnInfo(name = "jmlPintu") val jmlPintu : String? = null,
+                    @ColumnInfo(name = "jmlKuris") val jmlKuris: String? = null,
                     @ColumnInfo(name = "img1") val img1: String? = null,
                     @ColumnInfo(name = "img2") val img2: String? = null,
                     @ColumnInfo(name = "img3") val img3: String? = null) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -47,13 +73,26 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
         parcel.writeString(car_brand)
         parcel.writeString(logo_url)
         parcel.writeString(createdAt)
-        parcel.writeString(car_name)
+        parcel.writeString(type)
         parcel.writeString(harga_otr)
-        parcel.writeString(angsuran)
-        parcel.writeString(mesin)
-        parcel.writeString(tenaga)
-        parcel.writeString(tempat_duduk)
-        parcel.writeString(jenis_transmisi)
+        parcel.writeString(kapasitasMesin)
+        parcel.writeString(jmlSilinder)
+        parcel.writeString(jmlKatup)
+        parcel.writeString(maxTenaga)
+        parcel.writeString(jenisBahanBakar)
+        parcel.writeString(kapasitasBahanBakar)
+        parcel.writeString(suspensiDepan)
+        parcel.writeString(banAspekRasio)
+        parcel.writeString(suspensiBelakang)
+        parcel.writeString(tipeTransmisi)
+        parcel.writeString(tipeGearBox)
+        parcel.writeString(dimensiPanjang)
+        parcel.writeString(dimensiSumbuRoda)
+        parcel.writeString(dimensiGroundClearance)
+        parcel.writeString(dimensiBerat)
+        parcel.writeString(dimensiKargo)
+        parcel.writeString(jmlPintu)
+        parcel.writeString(jmlKuris)
         parcel.writeString(img1)
         parcel.writeString(img2)
         parcel.writeString(img3)
@@ -72,4 +111,6 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
             return arrayOfNulls(size)
         }
     }
+
+
 }

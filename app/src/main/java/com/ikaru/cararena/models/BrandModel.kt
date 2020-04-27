@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "brands")
 data class BrandModel (@PrimaryKey @ColumnInfo(name = "id")val id:Int,
-                        @ColumnInfo(name = "car_brand") val car_brand: String? = null,
-                       @ColumnInfo(name = "logo_url") val  logo_url : String? = null ,
+                        @ColumnInfo(name = "carBrand") val carBrand: String? = null,
+                       @ColumnInfo(name = "logo_url") val  logoUrl : String? = null ,
                        @ColumnInfo(name = "createdAt") val createdAt : String? = null
                        ):Parcelable {
     constructor(parcel: Parcel) : this(
@@ -22,8 +22,8 @@ data class BrandModel (@PrimaryKey @ColumnInfo(name = "id")val id:Int,
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(car_brand)
-        parcel.writeString(logo_url)
+        parcel.writeString(carBrand)
+        parcel.writeString(logoUrl)
         parcel.writeString(createdAt)
     }
 

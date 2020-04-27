@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.ikaru.cararena.R
+import com.ikaru.cararena.models.CarCompare
 import com.ikaru.cararena.models.CarModel
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_compare.*
@@ -39,12 +40,12 @@ class CompareActivity : AppCompatActivity() {
         getPaperDB()
         if(cars.isNotEmpty()){
             if (cars.size > 1){
-                tv_car_dua.text = cars.get(1).car_name
+                tv_car_dua.text = cars.get(1).type
                 btn_compare_go.visibility = View.VISIBLE
                 btn_compare_add.visibility = View.GONE
             }
 
-            tv_car_satu.text = cars.get(0).car_name
+            tv_car_satu.text = cars.get(0).type
         }else{
             btn_compare_clear.visibility = View.GONE
 
@@ -56,7 +57,7 @@ class CompareActivity : AppCompatActivity() {
             Log.e("ASW","kosong")
         }else{
             cars = intent.getParcelableArrayListExtra<CarModel>("test")
-                Log.e("ASW",cars.get(0).car_name)
+                Log.e("ASW",cars.get(0).type)
         }
 
     }
@@ -108,12 +109,21 @@ class CompareActivity : AppCompatActivity() {
         cars = Paper.book().read("cars", ArrayList())
     }
 
-    fun save(){
-        Paper.book().write("cars",cars)
+    fun saveToRecent(car1 : CarModel , car2 : CarModel){
+        var carsRecent : ArrayList<CarCompare> = ArrayList()
+        carsRecent = Paper.book().read("carsCompare",ArrayList())
+        var cars = CarCompare(car1,car2)
+        carsRecent.add(cars)
+        Paper.book().write("carsCompare",carsRecent)
     }
 
     fun goCompare(){
-
+        saveToRecent(cars[0],cars[1])
+        intent = Intent(this,CompareDetailActivity::class.java)
+        intent.putExtra("mobilSatu",cars[0])
+        intent.putExtra("mobilDua",cars[1])
+        startActivity(intent)
+        Animatoo.animateSlideLeft(this);
     }
 
     fun carClear(){
@@ -125,7 +135,6 @@ class CompareActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
         startActivity(refresh)
         overridePendingTransition(0, 0)
-
     }
 
     override fun onBackPressed() {
