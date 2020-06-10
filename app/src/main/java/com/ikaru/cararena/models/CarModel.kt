@@ -14,7 +14,7 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
                     @ColumnInfo(name = "createdAt")  val createdAt: String? = null,
                     @ColumnInfo(name = "type") val type: String? = null,
                     @ColumnInfo(name = "harga_otr") val harga_otr: String? = null,
-                    @ColumnInfo(name = "kapasitasMesin") val kapasitasMesin: String?  = null,
+                    @ColumnInfo(name = "kapasistasMesin") val kapasistasMesin: String?  = "0",
                     @ColumnInfo(name = "jmlSilinder") val jmlSilinder: String? = null,
                     @ColumnInfo(name = "jmlKatup") val jmlKatup: String? = null,
                     @ColumnInfo(name = "maxTenaga") val maxTenaga: String? = null,
@@ -75,7 +75,7 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
         parcel.writeString(createdAt)
         parcel.writeString(type)
         parcel.writeString(harga_otr)
-        parcel.writeString(kapasitasMesin)
+        parcel.writeString(kapasistasMesin)
         parcel.writeString(jmlSilinder)
         parcel.writeString(jmlKatup)
         parcel.writeString(maxTenaga)

@@ -46,10 +46,39 @@ class CarRepository(context: Context) {
                     Log.e("ASW","DATA ALREADY HERE")
                     var tgl = sharedPreferences.getString(PREF_NAME,"null")
                     Log.e("ASW", "Data Created On : $tgl")
+                    postServices.getCarByDate(tgl.toString()).enqueue(object : Callback<List<CarModel>> {
+                        override fun onFailure(call: Call<List<CarModel>>, t: Throwable) {
+                            Log.e("ASW", "errornya cars ${t.message}")
+                        }
+
+                        override fun onResponse(
+                            call: Call<List<CarModel>>,
+                            response: Response<List<CarModel>>
+                        ) {
+                            val sdf = SimpleDateFormat("yyyy-MM-dd")
+                            val currentDate = sdf.format(Date())
+                            val editor = sharedPreferences.edit()
+                            editor.putString(PREF_NAME, currentDate)
+                            editor.apply()
+                            if (response.body().isNullOrEmpty()){
+                                Log.e("ASW","Repo Add Date Without Data")
+                            }else{
+                                Log.e("ASW", response.body()!!.get(0).type)
+                                val data = response.body()
+                                data?.map {
+                                    InsertTask(it).execute()
+                                }
+                                Log.e("ASW","Repo Add Date With Data")
+                            }
+
+                        }
+
+                    })
 
                 }else{
                     val sdf = SimpleDateFormat("yyyy-MM-dd")
                     val currentDate = sdf.format(Date())
+                    Log.e("ASW","tanggal : "+currentDate)
                     val editor = sharedPreferences.edit()
                     editor.putString(PREF_NAME, currentDate)
                     editor.apply()

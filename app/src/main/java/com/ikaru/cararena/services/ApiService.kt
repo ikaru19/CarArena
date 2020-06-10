@@ -5,10 +5,14 @@ import com.ikaru.cararena.models.BrandModel
 import com.ikaru.cararena.models.CarModel
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("brand/cars")
     fun getCar(): Call<List<CarModel>>
+
+    @GET("brand/cars/{date}")
+    fun getCarByDate(@Path("date") date : String): Call<List<CarModel>>;
 
     @GET("brand")
     fun getBrands(): Call<List<BrandModel>>

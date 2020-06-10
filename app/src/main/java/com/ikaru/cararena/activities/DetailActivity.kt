@@ -29,7 +29,7 @@ class DetailActivity : AppCompatActivity() {
         sliderDetail.addTimerToSlide(2000)
         tv_harga_mobil_detail.text = carModel.harga_otr
         tv_mobil_detail.text = carModel.type
-        tv_mesin_detail.text = carModel.kapasitasMesin
+        tv_mesin_detail.text = carModel.kapasistasMesin
         tv_jml_silinder_detail.text = carModel.jmlSilinder
         tv_jml_katup_detail.text = carModel.jmlKatup
         tv_tenaga_detail.text = carModel.maxTenaga
