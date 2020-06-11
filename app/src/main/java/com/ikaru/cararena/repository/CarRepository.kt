@@ -44,37 +44,42 @@ class CarRepository(context: Context) {
 
                 if(cars!!.isNotEmpty()){
                     Log.e("ASW","DATA ALREADY HERE")
+                    val sdf = SimpleDateFormat("yyyy-MM-dd")
+                    val currentDate = sdf.format(Date())
                     var tgl = sharedPreferences.getString(PREF_NAME,"null")
-                    Log.e("ASW", "Data Created On : $tgl")
-                    postServices.getCarByDate(tgl.toString()).enqueue(object : Callback<List<CarModel>> {
-                        override fun onFailure(call: Call<List<CarModel>>, t: Throwable) {
-                            Log.e("ASW", "errornya cars ${t.message}")
-                        }
-
-                        override fun onResponse(
-                            call: Call<List<CarModel>>,
-                            response: Response<List<CarModel>>
-                        ) {
-                            val sdf = SimpleDateFormat("yyyy-MM-dd")
-                            val currentDate = sdf.format(Date())
-                            val editor = sharedPreferences.edit()
-                            editor.putString(PREF_NAME, currentDate)
-                            editor.apply()
-                            if (response.body().isNullOrEmpty()){
-                                Log.e("ASW","Repo Add Date Without Data")
-                            }else{
-                                Log.e("ASW", response.body()!!.get(0).type)
-                                val data = response.body()
-                                data?.map {
-                                    InsertTask(it).execute()
-                                }
-                                Log.e("ASW","Repo Add Date With Data")
+                    if(!tgl.equals(currentDate)){
+                        Log.e("ASW", "Data Created On : $tgl")
+                        postServices.getCarByDate(tgl.toString()).enqueue(object : Callback<List<CarModel>> {
+                            override fun onFailure(call: Call<List<CarModel>>, t: Throwable) {
+                                Log.e("ASW", "errornya cars ${t.message}")
                             }
 
-                        }
+                            override fun onResponse(
+                                call: Call<List<CarModel>>,
+                                response: Response<List<CarModel>>
+                            ) {
+                                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                                val currentDate = sdf.format(Date())
+                                val editor = sharedPreferences.edit()
+                                editor.putString(PREF_NAME, currentDate)
+                                editor.apply()
+                                if (response.body().isNullOrEmpty()){
+                                    Log.e("ASW","Repo Add Date Without Data")
+                                }else{
+                                    Log.e("ASW", response.body()!!.get(0).type)
+                                    val data = response.body()
+                                    data?.map {
+                                        InsertTask(it).execute()
+                                    }
+                                    Log.e("ASW","Repo Add Date With Data")
+                                }
 
-                    })
+                            }
 
+                        })
+                    }else{
+                        Log.e("ASW","No data for today !")
+                    }
                 }else{
                     val sdf = SimpleDateFormat("yyyy-MM-dd")
                     val currentDate = sdf.format(Date())
@@ -112,6 +117,7 @@ class CarRepository(context: Context) {
     inner class GetDataFromDB : AsyncTask<Void, Void, List<CarModel>>(){
         override fun doInBackground(vararg params: Void?): List<CarModel> {
             cars = carDatabase!!.carDao().getNewCar()
+
             return carDatabase!!.carDao().getNewCar()
         }
 

@@ -11,7 +11,7 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
                     @ColumnInfo(name = "id_brand")val id_brand:Int,
                     @ColumnInfo(name = "car_brand") val car_brand: String? = null,
                     @ColumnInfo(name = "logo_url")  val logo_url:String? = null,
-                    @ColumnInfo(name = "createdAt")  val createdAt: String? = null,
+                    @ColumnInfo(name = "createAt")  val createAt: String? = null,
                     @ColumnInfo(name = "type") val type: String? = null,
                     @ColumnInfo(name = "harga_otr") val harga_otr: String? = null,
                     @ColumnInfo(name = "kapasistasMesin") val kapasistasMesin: String?  = "0",
@@ -72,7 +72,7 @@ data class CarModel(@PrimaryKey @ColumnInfo(name = "id")val id:Int,
         parcel.writeInt(id_brand)
         parcel.writeString(car_brand)
         parcel.writeString(logo_url)
-        parcel.writeString(createdAt)
+        parcel.writeString(createAt)
         parcel.writeString(type)
         parcel.writeString(harga_otr)
         parcel.writeString(kapasistasMesin)

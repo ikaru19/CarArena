@@ -36,7 +36,7 @@ class BrandActivity : AppCompatActivity() {
         brandRepository = BrandRepository(this)
         getData()
         brandAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            Toast.makeText(this , "onItemClick : " + brands.get(position).carBrand , Toast.LENGTH_SHORT ).show()
+//            Toast.makeText(this , "onItemClick : " + brands.get(position).carBrand , Toast.LENGTH_SHORT ).show()
             var change = 404
             if (from =="compare"){
                 change = intent.getIntExtra("change",404)

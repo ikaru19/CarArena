@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         slider.addTimerToSlide(2000)
 
         carAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            Toast.makeText(this , "onItemClick : " + cars.get(position).type , Toast.LENGTH_SHORT ).show()
+//            Toast.makeText(this , "onItemClick : " + cars.get(position).type , Toast.LENGTH_SHORT ).show()
             intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("Car",cars.get(position))
             startActivity(intent)

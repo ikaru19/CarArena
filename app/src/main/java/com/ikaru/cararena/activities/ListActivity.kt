@@ -42,7 +42,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         getData()
 
         carAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            Toast.makeText(this , "onItemClick : " + cars.get(position).type , Toast.LENGTH_SHORT ).show()
+//            Toast.makeText(this , "onItemClick : " + cars.get(position).type , Toast.LENGTH_SHORT ).show()
             if (from == "compare"){
                 var change = intent.getIntExtra("change",404)
                 Log.e("ASW", change.toString())
