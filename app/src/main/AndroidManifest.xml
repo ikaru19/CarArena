@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ikaru.cararena">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.CompareDetailActivity"></activity>
+        <activity android:name=".activities.NoInternetActivity"></activity>
+        <activity android:name=".activities.PostReviewActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.ReviewActivity" />
+        <activity android:name=".activities.CompareDetailActivity" />
         <activity android:name=".activities.CompareActivity" />
         <activity android:name=".activities.DetailActivity" />
         <activity android:name=".activities.EmptyDataActivity" />

@@ -1,23 +1,18 @@
 package com.ikaru.cararena.activities
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.custom.sliderimage.logic.SliderImage
 import com.ikaru.cararena.R
 import com.ikaru.cararena.adapters.CarAdapter
 import com.ikaru.cararena.models.BackgroundModels
-import com.ikaru.cararena.models.BrandModel
 import com.ikaru.cararena.models.CarModel
 import com.ikaru.cararena.repository.CarRepository
-import com.ikaru.cararena.services.ApiService
 import com.ikaru.cararena.utils.DataRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call

@@ -1,7 +1,9 @@
 package com.ikaru.cararena.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.ikaru.cararena.R
 import com.ikaru.cararena.models.BrandModel
 import com.ikaru.cararena.models.CarModel
@@ -15,6 +17,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         carModel = intent.extras?.get("Car") as CarModel
+
+        btn_review_detail.setOnClickListener {
+            intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("car_id",carModel.id)
+            startActivity(intent)
+        }
         writeToLayout()
 
     }

@@ -30,7 +30,7 @@ object DataRepository {
         return retrofit.create(ApiService::class.java)
     }
 
-    public fun  createService(authToken: String): ApiService{
+    public fun  createService(authToken: String): ApiService {
         if (!TextUtils.isEmpty(authToken)) {
             httpClient.addInterceptor(AuthenticationInterceptor(authToken))
         }
