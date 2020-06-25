@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activities.ReviewActivity">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_review"
         android:layout_width="0dp"

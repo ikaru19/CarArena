@@ -9,7 +9,7 @@ interface ApiService {
     @GET("brand/cars")
     fun getCar(): Call<List<CarModel>>
 
-    @GET("brand/cars/{date}")
+    @GET("brand/cars/date/{date}")
     fun getCarByDate(@Path("date") date : String): Call<List<CarModel>>;
 
     @GET("brand")

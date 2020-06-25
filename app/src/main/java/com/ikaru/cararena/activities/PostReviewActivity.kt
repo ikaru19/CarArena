@@ -32,6 +32,8 @@ class PostReviewActivity : AppCompatActivity() {
         val uname = sharedPreferences.getString("name",null)
         var isLogin = sharedPreferences.getBoolean("isLogin",false)
 
+
+
         if (!isLogin){
             intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("car_id",idModel)
