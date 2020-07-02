@@ -30,6 +30,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
         android:fontFamily="@font/monserrat_bold"
+        android:padding="16dp"
         android:text="Tulis Komentar"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

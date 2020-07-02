@@ -51,7 +51,7 @@ class BrandActivity : AppCompatActivity() {
             Animatoo.animateSlideLeft(this);
             true
         }
-        rv_brand_activity_brand.layoutManager = GridLayoutManager(this,2)
+        rv_brand_activity_brand.layoutManager = GridLayoutManager(this,3)
         rv_brand_activity_brand.adapter = brandAdapter
 
 

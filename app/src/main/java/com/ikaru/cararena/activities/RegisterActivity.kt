@@ -26,9 +26,9 @@ class RegisterActivity : AppCompatActivity() {
             Animatoo.animateSlideRight(this);
         }
         btn_register.setOnClickListener {
-            val uname = et_username_register.text.toString()
-            val password = et_password_register.text.toString()
-            val email = et_email_register.text.toString()
+            val uname = et_username_register.editText?.text.toString()
+            val password = et_password_register.editText?.text.toString()
+            val email = et_email_register.editText?.text.toString()
             if (uname.isNullOrEmpty() || password.isNullOrEmpty() || email.isNullOrEmpty()){
                 Toast.makeText(this,"Mohon Form harap diisi",Toast.LENGTH_SHORT).show()
             }else{

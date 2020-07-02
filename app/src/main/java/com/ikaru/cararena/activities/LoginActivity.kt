@@ -30,8 +30,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login.setOnClickListener {
-            val uname = et_username_login.text.toString()
-            val password = et_password_login.text.toString()
+            val uname = et_username_login.editText?.text.toString()
+            val password = et_password_login.editText?.text.toString()
 
             if (uname.isNullOrEmpty() && password.isNullOrEmpty()){
                 Toast.makeText(this,"Mohon Username dan Password harap diisi",Toast.LENGTH_SHORT).show()

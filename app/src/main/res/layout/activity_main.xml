@@ -6,9 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,6 +45,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     android:weightSum="5">
 
@@ -54,17 +60,18 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
                             android:layout_marginLeft="8dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="16dp"
                             android:fontFamily="@font/monserrat_bold"
                             android:text="Temukan Mobil Impian Anda"
                             android:textAlignment="center"
                             android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="0dp"
                         android:layout_weight="3"
                         android:orientation="horizontal"
                         android:weightSum="4">
@@ -77,7 +84,7 @@
                             android:background="#FFFFFF"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="18dp">
+                            android:padding="14dp">
 
                             <ImageView
                                 android:id="@+id/imageView3"
@@ -135,8 +142,8 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/monserrat_bold"
                 android:text="Mobil Terbaru"
@@ -151,8 +158,8 @@
                 android:id="@+id/rv_car_popular_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
                 android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />

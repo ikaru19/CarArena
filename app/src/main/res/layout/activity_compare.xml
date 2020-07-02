@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:background="#C0392B"
                 android:fontFamily="@font/monserrat_bold"
+                android:padding="16dp"
                 android:text="TAMBAHKAN MOBIL"
                 android:textColor="#FFFFFF" />
 
@@ -169,19 +170,21 @@
                 android:id="@+id/btn_compare_go"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="#C0392B"
                 android:fontFamily="@font/monserrat_bold"
+                android:padding="16dp"
                 android:text="BANDINGKAN MOBIL"
-                android:layout_marginTop="8dp"
                 android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/btn_compare_clear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#C0392B"
                 android:layout_marginTop="8dp"
+                android:background="#C0392B"
                 android:fontFamily="@font/monserrat_bold"
+                android:padding="16dp"
                 android:text="HAPUS MOBIL"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
